@@ -29,7 +29,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -84,24 +84,24 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(movieData: List<MovieModel>,paddingValues: PaddingValues) {
-    movieList(movieData,paddingValues)
+    MovieList(movieData,paddingValues)
 }
 
 @Composable
-fun movieList(movieData: List<MovieModel>,paddingValues: PaddingValues) {
+fun MovieList(movieData: List<MovieModel>,paddingValues: PaddingValues) {
     LazyVerticalGrid(
         modifier = Modifier.padding(paddingValues),
         columns = GridCells.Adaptive(minSize = 192.dp)
     ) {
         itemsIndexed(movieData) { _, movie ->
-            movieItem(movie = movie)
+            MovieItem(movie = movie)
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun movieItem(movie: MovieModel) {
+fun MovieItem(movie: MovieModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -130,7 +130,7 @@ fun movieItem(movie: MovieModel) {
                             .align(Alignment.BottomEnd)
                             .padding(top = 24.dp, end = 16.dp)
                     ) {
-                        movieRating(movie.voteAverage.toFloat())
+                        MovieRating(movie.voteAverage.toFloat())
                     }
                 }
                 Spacer(modifier = Modifier.width(16.dp))
@@ -150,8 +150,8 @@ fun movieItem(movie: MovieModel) {
 }
 @Preview
 @Composable
-fun movieRating(progress: Float=7.7f) {
-    val progress: Float by remember { mutableStateOf(progress) }
+fun MovieRating(progress: Float=7.7f) {
+    val progress: Float by remember { mutableFloatStateOf(progress) }
 
     Card(
         modifier = Modifier.clip(
