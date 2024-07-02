@@ -1,6 +1,5 @@
 package com.example.moviedb.data.repos
 
-import com.example.moviedb.data.entity.MovieModel
 import com.example.moviedb.data.entity.MoviesListModel
 import kotlinx.coroutines.flow.Flow
 

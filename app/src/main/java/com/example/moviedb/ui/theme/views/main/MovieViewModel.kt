@@ -1,7 +1,5 @@
-package com.example.moviedb
+package com.example.moviedb.ui.theme.views.main
 
-import android.util.Log
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedb.data.entity.MoviesListModel
@@ -24,7 +22,6 @@ class MovieViewModel @Inject constructor(private val movieRepoInterface: MovieRe
         viewModelScope.launch(Dispatchers.IO){
             movieRepoInterface.getMovies().collect{
                 _moviesState.value = ViewState.Success(it)
-                Log.i("TAG", "getMovies: == ${it.results} ")
             }
         }
     }

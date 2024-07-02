@@ -1,6 +1,5 @@
 package com.example.moviedb.data.remote.dataSource
 
-import com.example.moviedb.data.entity.MovieModel
 import com.example.moviedb.data.entity.MoviesListModel
 import com.example.moviedb.data.remote.network.MovieServices
 import kotlinx.coroutines.flow.Flow

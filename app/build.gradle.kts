@@ -82,4 +82,5 @@ dependencies {
 
     //picasso
     implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("io.coil-kt:coil-compose:2.6.0")
 }
