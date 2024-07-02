@@ -1,21 +1,21 @@
 @file:Suppress("NAME_SHADOWING")
 
-package com.example.moviedb.ui.theme.views.main
+package com.example.moviedb.ui.views.mainScreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -35,9 +36,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -102,66 +104,67 @@ fun MovieList(movieData: List<MovieModel>,paddingValues: PaddingValues) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieItem(movie: MovieModel) {
-    Box(
+    Column (
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Card(onClick = {  }) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Box(
+            .padding(16.dp)
+            .fillMaxWidth(),
+    ){
+        Box{
+            Column {
+                AsyncImage(
+                    model = Constants.IMAGE_URL + movie.posterPath,
+                    contentDescription = "movie image",
                     modifier = Modifier
+                        .clip(RoundedCornerShape(8.dp))
                         .fillMaxWidth()
-                        .clickable { /* Handle click event */ }
-                ) {
-                    AsyncImage(
-                        model = Constants.IMAGE_URL + movie.posterPath,
-                        contentDescription = "movie image",
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                    )
 
-                    Box(
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .padding(top = 24.dp, end = 16.dp)
-                    ) {
-                        MovieRating(movie.voteAverage.toFloat())
-                    }
-                }
-                Spacer(modifier = Modifier.width(16.dp))
-                    Text(
-                        text = movie.title,
-                        modifier = Modifier.padding(8.dp)
-                    )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = movie.releaseDate,
-                    modifier = Modifier.padding(8.dp),
-                    color = Color.Gray
+                    ,
+                    contentScale = ContentScale.Crop
+
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(20.dp)
+                        .fillMaxWidth()
                 )
             }
+            DetailsIcon(
+                modifier = Modifier
+                    .padding(end = 8.dp, top = 8.dp)
+                    .background(color = Color.Gray, shape = RoundedCornerShape(8.dp))
+                    .align(Alignment.TopEnd)
+            )
+            MovieRating(
+                movie.voteAverage.toFloat(),
+                Modifier
+                    .padding(start = 16.dp)
+                    .align(Alignment.BottomStart)
+                    .clip(
+                        RoundedCornerShape(
+                            topStartPercent = 50,
+                            topEndPercent = 50,
+                            bottomEndPercent = 50,
+                            bottomStartPercent = 50
+                        )
+                    )
+            )
         }
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = movie.title,
+        )
+        Text(
+            text = movie.releaseDate,
+            color = Color.Gray
+        )
     }
 }
-@Preview
 @Composable
-fun MovieRating(progress: Float=7.7f) {
+fun MovieRating(progress: Float=7.7f, modifier: Modifier) {
     val progress: Float by remember { mutableFloatStateOf(progress) }
 
     Card(
-        modifier = Modifier.clip(
-            RoundedCornerShape(
-                topStartPercent = 50,
-                topEndPercent = 50,
-                bottomEndPercent = 50,
-                bottomStartPercent = 50
-            )
-        )
+        modifier = modifier
     ) {
         Box(contentAlignment = Alignment.Center) {
             CircularProgressIndicator(
@@ -179,4 +182,15 @@ fun MovieRating(progress: Float=7.7f) {
             )
         }
     }
+}
+@Composable
+fun DetailsIcon(modifier: Modifier)
+{
+
+    Icon(
+        painter = painterResource(id = R.drawable.ic_more),
+        contentDescription = "Localized description",
+        modifier = modifier
+    )
+
 }
