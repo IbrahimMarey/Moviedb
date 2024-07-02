@@ -1,4 +1,4 @@
-package com.example.moviedb.ui.theme.views.main
+package com.example.moviedb.ui.views.mainScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
