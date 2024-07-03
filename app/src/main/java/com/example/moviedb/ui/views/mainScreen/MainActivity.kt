@@ -49,8 +49,12 @@ import com.example.moviedb.data.entity.MovieModel
 import com.example.moviedb.data.entity.MoviesListModel
 import com.example.moviedb.ui.theme.MovieDBTheme
 import com.example.moviedb.ui.theme.corner_8dp
+import com.example.moviedb.ui.theme.fontSize_10sp
+import com.example.moviedb.ui.theme.fontSize_12sp
+import com.example.moviedb.ui.theme.gridCellSize
 import com.example.moviedb.ui.theme.height_16dp
 import com.example.moviedb.ui.theme.height_4dp
+import com.example.moviedb.ui.theme.itemRoundedCornerShape
 import com.example.moviedb.ui.theme.padding_16dp
 import com.example.moviedb.ui.theme.padding_8dp
 import com.example.moviedb.utils.ViewState
@@ -99,7 +103,7 @@ fun Greeting(movieData: List<MovieModel>,paddingValues: PaddingValues) {
 fun MovieList(movieData: List<MovieModel>,paddingValues: PaddingValues) {
     LazyVerticalGrid(
         modifier = Modifier.padding(paddingValues),
-        columns = GridCells.Adaptive(minSize = 192.dp)
+        columns = GridCells.Adaptive(minSize = gridCellSize)
     ) {
         itemsIndexed(movieData) { _, movie ->
             MovieItem(movie = movie)
@@ -147,10 +151,10 @@ fun MovieItem(movie: MovieModel) {
                     .align(Alignment.BottomStart)
                     .clip(
                         RoundedCornerShape(
-                            topStartPercent = 50,
-                            topEndPercent = 50,
-                            bottomEndPercent = 50,
-                            bottomStartPercent = 50
+                            topStartPercent = itemRoundedCornerShape,
+                            topEndPercent = itemRoundedCornerShape,
+                            bottomEndPercent = itemRoundedCornerShape,
+                            bottomStartPercent = itemRoundedCornerShape
                         )
                     )
             )
@@ -184,7 +188,7 @@ fun MovieRating(progress: Float=7.7f, modifier: Modifier) {
                     (progress * 10).toInt()),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
-                    fontSize = 10.sp
+                    fontSize = fontSize_12sp
                 ),
                 modifier = Modifier.align(Alignment.Center),
             )
