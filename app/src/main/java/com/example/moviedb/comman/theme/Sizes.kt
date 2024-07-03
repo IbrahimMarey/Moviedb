@@ -2,6 +2,7 @@ package com.example.moviedb.comman.theme
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+// Sizes
 
 // Padding
 val padding_2dp = 2.dp
