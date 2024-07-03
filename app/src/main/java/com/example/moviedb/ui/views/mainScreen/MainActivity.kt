@@ -48,6 +48,11 @@ import com.example.moviedb.R
 import com.example.moviedb.data.entity.MovieModel
 import com.example.moviedb.data.entity.MoviesListModel
 import com.example.moviedb.ui.theme.MovieDBTheme
+import com.example.moviedb.ui.theme.corner_8dp
+import com.example.moviedb.ui.theme.height_16dp
+import com.example.moviedb.ui.theme.height_4dp
+import com.example.moviedb.ui.theme.padding_16dp
+import com.example.moviedb.ui.theme.padding_8dp
 import com.example.moviedb.utils.ViewState
 import com.example.moviedb.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -107,7 +112,7 @@ fun MovieList(movieData: List<MovieModel>,paddingValues: PaddingValues) {
 fun MovieItem(movie: MovieModel) {
     Column (
         modifier = Modifier
-            .padding(16.dp)
+            .padding(padding_16dp)
             .fillMaxWidth(),
     ){
         Box{
@@ -116,7 +121,7 @@ fun MovieItem(movie: MovieModel) {
                     model = Constants.IMAGE_URL + movie.posterPath,
                     contentDescription = "movie image",
                     modifier = Modifier
-                        .clip(RoundedCornerShape(8.dp))
+                        .clip(RoundedCornerShape(corner_8dp))
                         .fillMaxWidth()
 
                     ,
@@ -125,20 +130,20 @@ fun MovieItem(movie: MovieModel) {
                 )
                 Spacer(
                     modifier = Modifier
-                        .height(20.dp)
+                        .height(height_16dp)
                         .fillMaxWidth()
                 )
             }
             DetailsIcon(
                 modifier = Modifier
-                    .padding(end = 8.dp, top = 8.dp)
-                    .background(color = Color.Gray, shape = RoundedCornerShape(8.dp))
+                    .padding(end = padding_8dp, top = padding_8dp)
+                    .background(color = Color.Gray, shape = RoundedCornerShape(corner_8dp))
                     .align(Alignment.TopEnd)
             )
             MovieRating(
                 movie.voteAverage.toFloat(),
                 Modifier
-                    .padding(start = 16.dp)
+                    .padding(start = padding_16dp)
                     .align(Alignment.BottomStart)
                     .clip(
                         RoundedCornerShape(
@@ -150,7 +155,7 @@ fun MovieItem(movie: MovieModel) {
                     )
             )
         }
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(height_4dp))
         Text(
             text = movie.title,
         )
