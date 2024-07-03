@@ -32,3 +32,6 @@ val gridCellSize = 192.dp
 // RoundedCornerShape
 val itemRoundedCornerShape = 50
 
+// line height
+val lineHeight_16 = 16.sp
+

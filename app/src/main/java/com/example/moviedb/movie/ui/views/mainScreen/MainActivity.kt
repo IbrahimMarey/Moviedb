@@ -41,20 +41,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.moviedb.R
 import com.example.moviedb.movie.data.entity.MovieModel
 import com.example.moviedb.movie.data.entity.MoviesListModel
 import com.example.moviedb.theme.MovieDBTheme
 import com.example.moviedb.theme.corner_8dp
-import com.example.moviedb.theme.fontSize_10sp
 import com.example.moviedb.theme.fontSize_12sp
 import com.example.moviedb.theme.gridCellSize
 import com.example.moviedb.theme.height_16dp
 import com.example.moviedb.theme.height_4dp
 import com.example.moviedb.theme.itemRoundedCornerShape
+import com.example.moviedb.theme.lineHeight_16
 import com.example.moviedb.theme.padding_16dp
 import com.example.moviedb.theme.padding_8dp
 import com.example.moviedb.utils.ViewState
@@ -162,6 +160,7 @@ fun MovieItem(movie: MovieModel) {
         Spacer(modifier = Modifier.height(height_4dp))
         Text(
             text = movie.title,
+            lineHeight = lineHeight_16
         )
         Text(
             text = movie.releaseDate,
