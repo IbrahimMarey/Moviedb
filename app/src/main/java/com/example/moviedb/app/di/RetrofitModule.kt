@@ -1,7 +1,7 @@
-package com.example.moviedb.di
+package com.example.moviedb.app.di
 
-import com.example.moviedb.data.remote.network.MovieServices
-import com.example.moviedb.utils.Constants
+import com.example.moviedb.app.data.remote.network.ApiServices
+import com.example.moviedb.app.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,8 +38,8 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): MovieServices {
-        return retrofit.create(MovieServices::class.java)
+    fun provideApiService(retrofit: Retrofit): ApiServices {
+        return retrofit.create(ApiServices::class.java)
     }
 
 }

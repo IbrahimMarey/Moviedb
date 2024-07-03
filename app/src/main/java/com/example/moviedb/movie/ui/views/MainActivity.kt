@@ -1,6 +1,6 @@
 @file:Suppress("NAME_SHADOWING")
 
-package com.example.moviedb.movie.ui.views.mainScreen
+package com.example.moviedb.movie.ui.views
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -43,20 +43,21 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import coil.compose.AsyncImage
 import com.example.moviedb.R
-import com.example.moviedb.data.entity.MovieModel
-import com.example.moviedb.data.entity.MoviesListModel
-import com.example.moviedb.theme.MovieDBTheme
-import com.example.moviedb.theme.corner_8dp
-import com.example.moviedb.theme.fontSize_12sp
-import com.example.moviedb.theme.gridCellSize
-import com.example.moviedb.theme.height_16dp
-import com.example.moviedb.theme.height_4dp
-import com.example.moviedb.theme.itemRoundedCornerShape
-import com.example.moviedb.theme.lineHeight_16
-import com.example.moviedb.theme.padding_16dp
-import com.example.moviedb.theme.padding_8dp
-import com.example.moviedb.utils.ViewState
-import com.example.moviedb.utils.Constants
+import com.example.moviedb.movie.data.movieEntity.MovieModel
+import com.example.moviedb.movie.data.movieEntity.MoviesListModel
+import com.example.moviedb.movie.ui.viewModels.MovieViewModel
+import com.example.moviedb.app.theme.MovieDBTheme
+import com.example.moviedb.app.theme.corner_8dp
+import com.example.moviedb.app.theme.fontSize_12sp
+import com.example.moviedb.app.theme.gridCellSize
+import com.example.moviedb.app.theme.height_16dp
+import com.example.moviedb.app.theme.height_4dp
+import com.example.moviedb.app.theme.itemRoundedCornerShape
+import com.example.moviedb.app.theme.lineHeight_16
+import com.example.moviedb.app.theme.padding_16dp
+import com.example.moviedb.app.theme.padding_8dp
+import com.example.moviedb.app.utils.ViewState
+import com.example.moviedb.app.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

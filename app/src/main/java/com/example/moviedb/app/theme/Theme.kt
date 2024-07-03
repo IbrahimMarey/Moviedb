@@ -1,4 +1,4 @@
-package com.example.moviedb.theme
+package com.example.moviedb.app.theme
 
 import android.app.Activity
 import android.os.Build

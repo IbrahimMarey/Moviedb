@@ -1,10 +1,10 @@
-package com.example.moviedb.movie.ui.views.mainScreen
+package com.example.moviedb.movie.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviedb.data.entity.MoviesListModel
-import com.example.moviedb.data.repos.MovieRepoInterface
-import com.example.moviedb.utils.ViewState
+import com.example.moviedb.movie.data.movieEntity.MoviesListModel
+import com.example.moviedb.movie.data.movieRepoModule.MovieRepoInterface
+import com.example.moviedb.app.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
