@@ -1,9 +1,9 @@
 package com.example.moviedb.di
 
-import com.example.moviedb.movie.data.remote.dataSource.RemoteDataSource
-import com.example.moviedb.movie.data.remote.dataSource.RemoteDataSourceInterface
-import com.example.moviedb.movie.data.repos.MovieRepo
-import com.example.moviedb.movie.data.repos.MovieRepoInterface
+import com.example.moviedb.data.remote.dataSource.RemoteDataSource
+import com.example.moviedb.data.remote.dataSource.RemoteDataSourceInterface
+import com.example.moviedb.data.repos.MovieRepo
+import com.example.moviedb.data.repos.MovieRepoInterface
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

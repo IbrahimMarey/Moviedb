@@ -43,8 +43,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import coil.compose.AsyncImage
 import com.example.moviedb.R
-import com.example.moviedb.movie.data.entity.MovieModel
-import com.example.moviedb.movie.data.entity.MoviesListModel
+import com.example.moviedb.data.entity.MovieModel
+import com.example.moviedb.data.entity.MoviesListModel
 import com.example.moviedb.theme.MovieDBTheme
 import com.example.moviedb.theme.corner_8dp
 import com.example.moviedb.theme.fontSize_12sp

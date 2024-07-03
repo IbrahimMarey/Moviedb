@@ -1,6 +1,6 @@
 package com.example.moviedb.di
 
-import com.example.moviedb.movie.data.remote.network.MovieServices
+import com.example.moviedb.data.remote.network.MovieServices
 import com.example.moviedb.utils.Constants
 import dagger.Module
 import dagger.Provides
