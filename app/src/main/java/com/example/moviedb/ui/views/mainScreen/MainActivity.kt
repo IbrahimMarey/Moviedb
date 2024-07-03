@@ -38,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -47,7 +48,7 @@ import com.example.moviedb.R
 import com.example.moviedb.data.entity.MovieModel
 import com.example.moviedb.data.entity.MoviesListModel
 import com.example.moviedb.ui.theme.MovieDBTheme
-import com.example.moviedb.ui.theme.ViewState
+import com.example.moviedb.utils.ViewState
 import com.example.moviedb.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -173,7 +174,9 @@ fun MovieRating(progress: Float=7.7f, modifier: Modifier) {
             )
             Text(
 
-                text = "${(progress * 10).toInt()}%",
+                text = stringResource(
+                    id = R.string.movie_percentage_rate,
+                    (progress * 10).toInt()),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 10.sp
