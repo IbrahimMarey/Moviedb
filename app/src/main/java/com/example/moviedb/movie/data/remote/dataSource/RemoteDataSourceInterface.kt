@@ -1,6 +1,6 @@
-package com.example.moviedb.data.remote.dataSource
+package com.example.moviedb.movie.data.remote.dataSource
 
-import com.example.moviedb.data.entity.MoviesListModel
+import com.example.moviedb.movie.data.entity.MoviesListModel
 import kotlinx.coroutines.flow.Flow
 
 interface RemoteDataSourceInterface

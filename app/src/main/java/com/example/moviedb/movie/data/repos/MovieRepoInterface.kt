@@ -1,6 +1,6 @@
-package com.example.moviedb.data.repos
+package com.example.moviedb.movie.data.repos
 
-import com.example.moviedb.data.entity.MoviesListModel
+import com.example.moviedb.movie.data.entity.MoviesListModel
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepoInterface {

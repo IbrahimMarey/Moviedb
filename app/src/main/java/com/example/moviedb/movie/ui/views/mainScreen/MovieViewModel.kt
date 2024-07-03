@@ -1,9 +1,9 @@
-package com.example.moviedb.ui.views.mainScreen
+package com.example.moviedb.movie.ui.views.mainScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviedb.data.entity.MoviesListModel
-import com.example.moviedb.data.repos.MovieRepoInterface
+import com.example.moviedb.movie.data.entity.MoviesListModel
+import com.example.moviedb.movie.data.repos.MovieRepoInterface
 import com.example.moviedb.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

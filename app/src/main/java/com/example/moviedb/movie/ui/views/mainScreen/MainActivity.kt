@@ -1,6 +1,6 @@
 @file:Suppress("NAME_SHADOWING")
 
-package com.example.moviedb.ui.views.mainScreen
+package com.example.moviedb.movie.ui.views.mainScreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -45,18 +45,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.moviedb.R
-import com.example.moviedb.data.entity.MovieModel
-import com.example.moviedb.data.entity.MoviesListModel
-import com.example.moviedb.ui.theme.MovieDBTheme
-import com.example.moviedb.ui.theme.corner_8dp
-import com.example.moviedb.ui.theme.fontSize_10sp
-import com.example.moviedb.ui.theme.fontSize_12sp
-import com.example.moviedb.ui.theme.gridCellSize
-import com.example.moviedb.ui.theme.height_16dp
-import com.example.moviedb.ui.theme.height_4dp
-import com.example.moviedb.ui.theme.itemRoundedCornerShape
-import com.example.moviedb.ui.theme.padding_16dp
-import com.example.moviedb.ui.theme.padding_8dp
+import com.example.moviedb.movie.data.entity.MovieModel
+import com.example.moviedb.movie.data.entity.MoviesListModel
+import com.example.moviedb.movie.ui.theme.MovieDBTheme
+import com.example.moviedb.movie.ui.theme.corner_8dp
+import com.example.moviedb.movie.ui.theme.fontSize_10sp
+import com.example.moviedb.movie.ui.theme.fontSize_12sp
+import com.example.moviedb.movie.ui.theme.gridCellSize
+import com.example.moviedb.movie.ui.theme.height_16dp
+import com.example.moviedb.movie.ui.theme.height_4dp
+import com.example.moviedb.movie.ui.theme.itemRoundedCornerShape
+import com.example.moviedb.movie.ui.theme.padding_16dp
+import com.example.moviedb.movie.ui.theme.padding_8dp
 import com.example.moviedb.utils.ViewState
 import com.example.moviedb.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -95,12 +95,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(movieData: List<MovieModel>,paddingValues: PaddingValues) {
+fun Greeting(movieData: List<MovieModel>, paddingValues: PaddingValues) {
     MovieList(movieData,paddingValues)
 }
 
 @Composable
-fun MovieList(movieData: List<MovieModel>,paddingValues: PaddingValues) {
+fun MovieList(movieData: List<MovieModel>, paddingValues: PaddingValues) {
     LazyVerticalGrid(
         modifier = Modifier.padding(paddingValues),
         columns = GridCells.Adaptive(minSize = gridCellSize)
