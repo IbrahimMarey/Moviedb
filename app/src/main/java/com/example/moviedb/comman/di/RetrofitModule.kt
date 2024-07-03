@@ -1,7 +1,7 @@
-package com.example.moviedb.app.di
+package com.example.moviedb.comman.di
 
-import com.example.moviedb.app.data.remote.network.ApiServices
-import com.example.moviedb.app.utils.Constants
+import com.example.moviedb.comman.network.ApiServices
+import com.example.moviedb.comman.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.example.moviedb.app.di
+package com.example.moviedb.comman.di
 
 import com.example.moviedb.movie.data.movieModuleDataSource.MovieDataSource
 import com.example.moviedb.movie.data.movieModuleDataSource.IMovieDataSource

@@ -1,7 +1,7 @@
 package com.example.moviedb.movie.data.movieModuleDataSource
 
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
-import com.example.moviedb.app.data.remote.network.ApiServices
+import com.example.moviedb.comman.network.ApiServices
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

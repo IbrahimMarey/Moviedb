@@ -1,7 +1,7 @@
-package com.example.moviedb.app.data.remote.network
+package com.example.moviedb.comman.network
 
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
-import com.example.moviedb.app.utils.Constants
+import com.example.moviedb.comman.utils.Constants
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

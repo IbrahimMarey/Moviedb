@@ -1,4 +1,4 @@
-package com.example.moviedb.app.theme
+package com.example.moviedb.comman.theme
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp

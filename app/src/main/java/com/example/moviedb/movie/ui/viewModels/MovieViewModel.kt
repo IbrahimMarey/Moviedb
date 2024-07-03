@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import com.example.moviedb.movie.data.movieRepoModule.MovieRepoInterface
-import com.example.moviedb.app.utils.ViewState
+import com.example.moviedb.comman.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,6 +1,5 @@
-package com.example.moviedb.app.theme
+package com.example.moviedb.comman.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

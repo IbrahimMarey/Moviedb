@@ -46,18 +46,18 @@ import com.example.moviedb.R
 import com.example.moviedb.movie.data.movieEntity.MovieModel
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import com.example.moviedb.movie.ui.viewModels.MovieViewModel
-import com.example.moviedb.app.theme.MovieDBTheme
-import com.example.moviedb.app.theme.corner_8dp
-import com.example.moviedb.app.theme.fontSize_12sp
-import com.example.moviedb.app.theme.gridCellSize
-import com.example.moviedb.app.theme.height_16dp
-import com.example.moviedb.app.theme.height_4dp
-import com.example.moviedb.app.theme.itemRoundedCornerShape
-import com.example.moviedb.app.theme.lineHeight_16
-import com.example.moviedb.app.theme.padding_16dp
-import com.example.moviedb.app.theme.padding_8dp
-import com.example.moviedb.app.utils.ViewState
-import com.example.moviedb.app.utils.Constants
+import com.example.moviedb.comman.theme.MovieDBTheme
+import com.example.moviedb.comman.theme.corner_8dp
+import com.example.moviedb.comman.theme.fontSize_12sp
+import com.example.moviedb.comman.theme.gridCellSize
+import com.example.moviedb.comman.theme.height_16dp
+import com.example.moviedb.comman.theme.height_4dp
+import com.example.moviedb.comman.theme.itemRoundedCornerShape
+import com.example.moviedb.comman.theme.lineHeight_16
+import com.example.moviedb.comman.theme.padding_16dp
+import com.example.moviedb.comman.theme.padding_8dp
+import com.example.moviedb.comman.utils.ViewState
+import com.example.moviedb.comman.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -122,7 +122,7 @@ fun MovieItem(movie: MovieModel) {
             Column {
                 AsyncImage(
                     model = Constants.IMAGE_URL + movie.posterPath,
-                    contentDescription = "movie image",
+                    contentDescription = stringResource(id = R.string.movie_img),
                     modifier = Modifier
                         .clip(RoundedCornerShape(corner_8dp))
                         .fillMaxWidth()
@@ -170,7 +170,7 @@ fun MovieItem(movie: MovieModel) {
     }
 }
 @Composable
-fun MovieRating(progress: Float=7.7f, modifier: Modifier) {
+fun MovieRating(progress: Float, modifier: Modifier) {
     val progress: Float by remember { mutableFloatStateOf(progress) }
 
     Card(
@@ -201,7 +201,7 @@ fun DetailsIcon(modifier: Modifier)
 
     Icon(
         painter = painterResource(id = R.drawable.ic_more),
-        contentDescription = "Localized description",
+        contentDescription = stringResource(id = R.string.more),
         modifier = modifier
     )
 

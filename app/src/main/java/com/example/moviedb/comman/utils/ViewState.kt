@@ -1,4 +1,4 @@
-package com.example.moviedb.app.utils
+package com.example.moviedb.comman.utils
 
 sealed class ViewState<out T> {
     data object Loading: ViewState<Nothing>()
