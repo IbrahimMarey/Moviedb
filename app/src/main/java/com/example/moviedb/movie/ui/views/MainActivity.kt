@@ -3,6 +3,7 @@
 package com.example.moviedb.movie.ui.views
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -68,10 +69,10 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieViewModel.getMovies()
+        movieViewModel.getMoviesUseCase()
         enableEdgeToEdge()
         setContent {
-            val moviesState by movieViewModel.moviesState.collectAsState()
+            val moviesState by movieViewModel.moviesStateD.collectAsState()
             MovieDBTheme {
                 Scaffold(
                     topBar = {
@@ -81,8 +82,13 @@ class MainActivity : ComponentActivity() {
                     },
                     modifier = Modifier.fillMaxSize()) { innerPadding ->
                     when(moviesState){
-                        is ViewState.Error -> {}
-                        ViewState.Loading -> {}
+                        is ViewState.Error -> {
+                            Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+
+                        }
+                        ViewState.Loading -> {
+                            Toast.makeText(this, "loading", Toast.LENGTH_SHORT).show()
+                        }
                         is ViewState.Success -> {
                             Greeting(movieData = (moviesState as ViewState.Success<MoviesListModel>).data.results, paddingValues = innerPadding)
                         }
