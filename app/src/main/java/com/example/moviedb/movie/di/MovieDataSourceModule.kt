@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class DataSourceModule {
+abstract class MovieDataSourceModule {
     @Binds
     abstract fun provideRMovieDataSource(dataSource: MovieRemoteDataSource): IMovieDataSource
 

@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepoModule
+abstract class MovieRepoModule
 {
     @Binds
     abstract fun  provideMovieRepo(movieRepo: MovieRepo): IMovieRepo
