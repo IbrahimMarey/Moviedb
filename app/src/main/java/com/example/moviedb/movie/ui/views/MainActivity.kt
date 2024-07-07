@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieViewModel.getMoviesUseCase()
+        movieViewModel.getMovies()
         enableEdgeToEdge()
         setContent {
             val moviesState by movieViewModel.moviesStateD.collectAsState()

@@ -1,9 +1,9 @@
-package com.example.moviedb.movie.data.movieRepoModule
+package com.example.moviedb.movie.domin
 
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import kotlinx.coroutines.flow.Flow
 
-interface MovieRepoInterface {
+interface IMovieRepo {
 
     fun getMovies(): Flow<MoviesListModel>
 }

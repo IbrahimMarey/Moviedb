@@ -1,15 +1,15 @@
-package com.example.moviedb.movie.data.movieModuleDataSource
+package com.example.moviedb.movie.data.movieDataSource
 
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
-import com.example.moviedb.comman.network.ApiServices
+import com.example.moviedb.movie.data.network.MovieServices
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class MovieDataSource @Inject constructor(private val apiServices: ApiServices) :
+class MovieRemoteDataSource @Inject constructor(private val movieServices: MovieServices) :
     IMovieDataSource {
     override fun getMovies(): Flow<MoviesListModel> =flow{
-        apiServices.getMovies().body().let {
+        movieServices.getMovies().body().let {
             it?.let { it1 -> emit(it1) }
         }
     }

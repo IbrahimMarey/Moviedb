@@ -1,6 +1,6 @@
 package com.example.moviedb.comman.di
 
-import com.example.moviedb.comman.network.ApiServices
+import com.example.moviedb.movie.data.network.MovieServices
 import com.example.moviedb.comman.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -35,11 +35,4 @@ class RetrofitModule {
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiServices {
-        return retrofit.create(ApiServices::class.java)
-    }
-
 }
