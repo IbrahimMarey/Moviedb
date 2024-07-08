@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import com.example.moviedb.comman.utils.ViewState
-import com.example.moviedb.movie.domin.MoviesUseCase
+import com.example.moviedb.movie.domin.usesCases.MoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

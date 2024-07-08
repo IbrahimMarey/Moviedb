@@ -35,8 +35,8 @@ import com.example.moviedb.comman.theme.itemRoundedCornerShape
 import com.example.moviedb.comman.theme.lineHeight_16
 import com.example.moviedb.comman.theme.padding_16dp
 import com.example.moviedb.comman.theme.padding_8dp
-import com.example.moviedb.comman.ui.MovieRating
-import com.example.moviedb.comman.ui.Screen
+import com.example.moviedb.comman.ui.widgets.MovieRating
+import com.example.moviedb.comman.ui.navigation.Screen
 import com.example.moviedb.comman.utils.Constants
 import com.example.moviedb.movie.data.movieEntity.MovieModel
 

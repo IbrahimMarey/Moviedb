@@ -37,6 +37,8 @@ val fontSize_12sp = 12.sp
 val fontSize_14sp = 14.sp
 val fontSize_16sp = 16.sp
 val fontSize_18sp = 18.sp
+val fontSize_20sp = 20.sp
+val fontSize_24sp = 24.sp
 
 // Grid Cell Size
 val gridCellSize = 192.dp

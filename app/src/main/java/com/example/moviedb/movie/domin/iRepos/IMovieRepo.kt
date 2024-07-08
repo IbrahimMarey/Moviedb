@@ -1,4 +1,4 @@
-package com.example.moviedb.movie.domin
+package com.example.moviedb.movie.domin.iRepos
 
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import kotlinx.coroutines.flow.Flow

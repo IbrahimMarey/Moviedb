@@ -1,9 +1,7 @@
 package com.example.moviedb.movieDetails.di
 
-import com.example.moviedb.movie.domin.IMovieRepo
-import com.example.moviedb.movie.domin.MoviesUseCase
-import com.example.moviedb.movieDetails.domin.IMovieDetailsRepo
-import com.example.moviedb.movieDetails.domin.MovieDetailsUseCase
+import com.example.moviedb.movieDetails.domin.iRepos.IMovieDetailsRepo
+import com.example.moviedb.movieDetails.domin.useCases.MovieDetailsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

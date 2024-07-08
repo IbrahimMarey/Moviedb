@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,6 +37,7 @@ import com.example.moviedb.comman.theme.corner_8dp
 import com.example.moviedb.comman.theme.fontSize_10sp
 import com.example.moviedb.comman.theme.fontSize_12sp
 import com.example.moviedb.comman.theme.fontSize_16sp
+import com.example.moviedb.comman.theme.fontSize_24sp
 import com.example.moviedb.comman.theme.height_32dp
 import com.example.moviedb.comman.theme.itemRoundedCornerShape
 import com.example.moviedb.comman.theme.lineHeight_16
@@ -45,7 +47,7 @@ import com.example.moviedb.comman.theme.padding_4dp
 import com.example.moviedb.comman.theme.padding_8dp
 import com.example.moviedb.comman.theme.width_144dp
 import com.example.moviedb.comman.theme.width_32dp
-import com.example.moviedb.comman.ui.MovieRating
+import com.example.moviedb.comman.ui.widgets.MovieRating
 import com.example.moviedb.comman.utils.Constants
 import com.example.moviedb.movieDetails.data.entity.MovieDetailsModel
 
@@ -53,16 +55,16 @@ import com.example.moviedb.movieDetails.data.entity.MovieDetailsModel
 fun MovieDetailsScreen(movieDetailsModel: MovieDetailsModel,paddingValues: PaddingValues)
 {
     Box {
-        /*AsyncImage(
+        AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(),
-            model = Constants.IMAGE_URL + movieDetailsModel.posterPath,
+            model = Constants.IMAGE_URL + movieDetailsModel.backdropPath,
             contentDescription = stringResource(id = R.string.movie_img),
-            contentScale = ContentScale.Crop
-
+            contentScale = ContentScale.Crop,
+            alpha = 0.5f
         )
-        Box (modifier = Modifier
+        /*Box (modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
             .background(Color.Gray.copy(alpha = 0.5f))
@@ -157,7 +159,7 @@ fun MovieMainDetails(movieDetailsModel: MovieDetailsModel) {
     Column(
         modifier = Modifier.padding(top = padding_16dp, end = padding_16dp)
     ) {
-        Text(text = movieDetailsModel.title)
+        Text(text = movieDetailsModel.title, fontSize = fontSize_24sp)
         Row {
             Text(text = movieDetailsModel.releaseDate)
             Text(text = stringResource(R.string.movie_language, movieDetailsModel.originalLanguage).uppercase())
@@ -243,6 +245,20 @@ fun MovieIconAction(drawable:Int)
     }
 }
 @Composable
+fun MovieGenres(movieDetailsModel: MovieDetailsModel)
+{
+    Text(modifier = Modifier.padding(start = padding_16dp), fontSize = fontSize_24sp, text = stringResource(id = R.string.geners))
+    LazyRow(
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = padding_16dp),
+        horizontalArrangement = Arrangement.SpaceAround
+    ) {
+        items(movieDetailsModel.genres.size) { item ->
+            Text(modifier = Modifier.padding(padding_4dp), text = movieDetailsModel.genres[item].name)
+        }
+    }
+}
+@Composable
 fun PlayTrailerCompose()
 {
     Row(
@@ -259,25 +275,18 @@ fun PlayTrailerCompose()
         Text(text = stringResource(id = R.string.play_trailer))
     }
 }
-@Composable
-fun MovieGenres(movieDetailsModel: MovieDetailsModel)
-{
-    Text(modifier = Modifier.padding(start = padding_16dp), text = stringResource(id = R.string.geners))
-    LazyRow(
-        modifier = Modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(horizontal = padding_16dp),
-        horizontalArrangement = Arrangement.SpaceAround
-    ) {
-        items(movieDetailsModel.genres.size) { item ->
-            Text(modifier = Modifier.padding(padding_4dp), text = movieDetailsModel.genres[item].name)
-        }
-    }
-}
 
 @Composable
 fun MovieDescription(desc:String)
 {
-    Text(modifier = Modifier.padding(start = padding_16dp, top = padding_24dp), text = stringResource(id = R.string.desc))
+    Text(modifier = Modifier.padding(start = padding_16dp, top = padding_24dp), fontSize = fontSize_24sp, text = stringResource(id = R.string.desc))
     Text(modifier = Modifier.padding(start = padding_24dp, top = padding_8dp, end = padding_16dp), text = desc)
-
 }
+
+/*
+private fun getDominantColor(bitmap: Bitmap): Color {
+    val newBitmap = Bitmap.createScaledBitmap(bitmap, 1, 1, true)
+    val color = newBitmap.getPixel(0, 0)
+    newBitmap.recycle()
+    return Color(color)
+}*/

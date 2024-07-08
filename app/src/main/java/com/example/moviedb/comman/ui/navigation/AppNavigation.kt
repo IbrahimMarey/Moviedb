@@ -1,14 +1,7 @@
-package com.example.moviedb.comman.ui
+package com.example.moviedb.comman.ui.navigation
 
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -17,11 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -29,9 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.moviedb.R
-import com.example.moviedb.comman.theme.fontSize_18sp
 import com.example.moviedb.comman.utils.ViewState
-import com.example.moviedb.movie.data.movieEntity.MovieModel
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import com.example.moviedb.movie.ui.viewModels.MovieViewModel
 import com.example.moviedb.movie.ui.views.MovieList

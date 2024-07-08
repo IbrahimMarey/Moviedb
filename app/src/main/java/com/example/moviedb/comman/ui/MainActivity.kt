@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.example.moviedb.movie.ui.viewModels.MovieViewModel
 import com.example.moviedb.comman.theme.MovieDBTheme
+import com.example.moviedb.comman.ui.navigation.MovieDBNavigation
 import com.example.moviedb.movieDetails.ui.viewModel.MovieDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

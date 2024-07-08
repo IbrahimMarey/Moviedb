@@ -1,4 +1,4 @@
-package com.example.moviedb.movieDetails.domin
+package com.example.moviedb.movieDetails.domin.iRepos
 
 import com.example.moviedb.movieDetails.data.entity.MovieDetailsModel
 
