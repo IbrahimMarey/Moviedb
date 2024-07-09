@@ -49,6 +49,10 @@ fun MovieList(movieData: List<MovieModel>, paddingValues: PaddingValues,navContr
         itemsIndexed(movieData) { _, movie ->
             Surface(onClick = {
                 Log.i("TAG", "MovieList item click : ${movie.id}")
+                navController.currentBackStackEntry?.savedStateHandle?.set(
+                    key = "movie",
+                    value = movie
+                )
                 navController.navigate(Screen.MovieDetailsScreen.route +"/"+(movie.id.toString()))
             }) {
                 MovieItem(movie = movie)

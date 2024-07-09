@@ -49,13 +49,14 @@ import com.example.moviedb.comman.theme.width_144dp
 import com.example.moviedb.comman.theme.width_32dp
 import com.example.moviedb.comman.ui.widgets.MovieRating
 import com.example.moviedb.comman.utils.Constants
+import com.example.moviedb.movie.data.movieEntity.MovieModel
 import com.example.moviedb.movieDetails.data.entity.MovieDetailsModel
 
 @Composable
-fun MovieDetailsScreen(movieDetailsModel: MovieDetailsModel,paddingValues: PaddingValues)
+fun MovieDetailsScreen(movieDetailsModel: MovieDetailsModel,paddingValues: PaddingValues,movie:MovieModel?)
 {
     Box {
-        AsyncImage(
+        /*AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(),
@@ -63,7 +64,7 @@ fun MovieDetailsScreen(movieDetailsModel: MovieDetailsModel,paddingValues: Paddi
             contentDescription = stringResource(id = R.string.movie_img),
             contentScale = ContentScale.Crop,
             alpha = 0.5f
-        )
+        )*/
         /*Box (modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
@@ -89,7 +90,7 @@ fun MovieDetailsScreen(movieDetailsModel: MovieDetailsModel,paddingValues: Paddi
             }
 
             item {
-                MovieDescription(movieDetailsModel.overview)
+                MovieDescription(movie?.overview?:"not found data")
             }
         }
     }

@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.moviedb.R
 import com.example.moviedb.comman.utils.ViewState
+import com.example.moviedb.movie.data.movieEntity.MovieModel
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import com.example.moviedb.movie.ui.viewModels.MovieViewModel
 import com.example.moviedb.movie.ui.views.MovieList
@@ -50,9 +51,15 @@ fun MovieDBNavigation(
             }
             )
         ){ entry->
+//            LaunchedEffect(key1 = entry) {
+//                val movie = navController.previousBackStackEntry?.savedStateHandle?.get<MovieModel>("movie")
+//                Log.i("TAG", "clicked movie = = =  $movie")
+//            }
+            val movie = navController.previousBackStackEntry?.savedStateHandle?.get<MovieModel>("movie")
+            Log.i("TAG", "clicked movie = = =  $movie")
             if(entry.arguments?.getString("movie_id") != null )
                 Log.i("TAG", "MovieDBNavigation: ${entry.arguments?.getString("movie_id")}")
-            MovieDetailsScreen(id = entry.arguments?.getString("movie_id"), detailsViewModel = movieDetailsViewModel)
+            MovieDetailsScreen(id = entry.arguments?.getString("movie_id"), detailsViewModel = movieDetailsViewModel,movie=movie)
         }
     }
 }
@@ -86,7 +93,7 @@ fun MoviesHomeScreen(movieViewModel: MovieViewModel,navController:NavController)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MovieDetailsScreen(id:String?, detailsViewModel: MovieDetailsViewModel)
+fun MovieDetailsScreen(id:String?, detailsViewModel: MovieDetailsViewModel,movie:MovieModel?)
 {
     Log.i("TAG", "Movie id = = = = = = = = =  ${id}")
     LaunchedEffect(key1 = id) {
@@ -112,7 +119,8 @@ fun MovieDetailsScreen(id:String?, detailsViewModel: MovieDetailsViewModel)
             is ViewState.Success -> {
                 com.example.moviedb.movieDetails.ui.views.MovieDetailsScreen(
                     movieDetailsModel = (movieDetailsState as ViewState.Success<MovieDetailsModel>).data,
-                    paddingValues = innerPadding
+                    paddingValues = innerPadding,
+                    movie = movie
                 )
             }
         }
