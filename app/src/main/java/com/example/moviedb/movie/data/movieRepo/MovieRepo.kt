@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class MovieRepo @Inject constructor(private val iMovieDataSource: IMovieDataSource) :
     IMovieRepo {
-    override fun getMovies(): Flow<MoviesListModel> {
+    override suspend fun getMovies():MoviesListModel? {
         return iMovieDataSource.getMovies()
     }
 }

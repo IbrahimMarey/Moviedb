@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class MovieModel (
     val adult: Boolean,
 
@@ -39,4 +38,4 @@ data class MovieModel (
 
     @SerializedName("vote_count")
     val voteCount: Long
-):Parcelable
+)
