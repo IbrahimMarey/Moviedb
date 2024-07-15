@@ -3,4 +3,12 @@
     <string name="movie_img">Movie Image</string>
     <string name="movie_percentage_rate">%d%%</string>
     <string name="more">More</string>
+    <string name="watch_now">Watch Now</string>
+    <string name="now_streaming">Now Streaming</string>
+    <string name="movie_language">\t (%1$s)</string>
+    <string name="what_your_vibe">What\'s Your Vibe?</string>
+    <string name="play_trailer">Play Trailer</string>
+    <string name="geners">Genres</string>
+    <string name="desc">Description</string>
+    <string name="info">Movie Action</string>
 </resources>

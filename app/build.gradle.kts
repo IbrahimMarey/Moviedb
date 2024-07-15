@@ -3,7 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id ("com.google.dagger.hilt.android")
     id ("kotlin-kapt")
-
+    alias(libs.plugins.kotlin.serialization)
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -80,7 +81,10 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 
-    //picasso
-    implementation ("com.squareup.picasso:picasso:2.8")
+    //img
     implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // Compose Navigation
+    implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }

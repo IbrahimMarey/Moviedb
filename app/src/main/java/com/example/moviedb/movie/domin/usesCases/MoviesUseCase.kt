@@ -1,6 +1,7 @@
-package com.example.moviedb.movie.domin
+package com.example.moviedb.movie.domin.usesCases
 
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
+import com.example.moviedb.movie.domin.iRepos.IMovieRepo
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

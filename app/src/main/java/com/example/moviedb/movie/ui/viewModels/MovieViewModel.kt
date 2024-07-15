@@ -1,10 +1,11 @@
 package com.example.moviedb.movie.ui.viewModels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import com.example.moviedb.comman.utils.ViewState
-import com.example.moviedb.movie.domin.MoviesUseCase
+import com.example.moviedb.movie.domin.usesCases.MoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,9 +19,13 @@ class MovieViewModel @Inject constructor(private val moviesUseCase: MoviesUseCas
         ViewState.Loading)
     val moviesStateD :StateFlow<ViewState<MoviesListModel>> = _moviesStateD
 
+    init {
+        getMovies()
+    }
 
     fun getMovies()
     {
+        Log.i("TAG", "getMovies: ==============")
         viewModelScope.launch(Dispatchers.IO){
             moviesUseCase().collect{
                 _moviesStateD.value = ViewState.Success(it)

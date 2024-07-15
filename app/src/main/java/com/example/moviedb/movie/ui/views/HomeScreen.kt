@@ -1,19 +1,11 @@
-@file:Suppress("NAME_SHADOWING")
-
 package com.example.moviedb.movie.ui.views
 
-import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,18 +13,10 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,16 +24,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.moviedb.R
-import com.example.moviedb.movie.data.movieEntity.MovieModel
-import com.example.moviedb.movie.data.movieEntity.MoviesListModel
-import com.example.moviedb.movie.ui.viewModels.MovieViewModel
-import com.example.moviedb.comman.theme.MovieDBTheme
 import com.example.moviedb.comman.theme.corner_8dp
-import com.example.moviedb.comman.theme.fontSize_12sp
 import com.example.moviedb.comman.theme.gridCellSize
 import com.example.moviedb.comman.theme.height_16dp
 import com.example.moviedb.comman.theme.height_4dp
@@ -57,66 +35,32 @@ import com.example.moviedb.comman.theme.itemRoundedCornerShape
 import com.example.moviedb.comman.theme.lineHeight_16
 import com.example.moviedb.comman.theme.padding_16dp
 import com.example.moviedb.comman.theme.padding_8dp
-import com.example.moviedb.comman.utils.ViewState
+import com.example.moviedb.comman.ui.widgets.MovieRating
+import com.example.moviedb.comman.ui.navigation.Screen
 import com.example.moviedb.comman.utils.Constants
-import dagger.hilt.android.AndroidEntryPoint
-
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-
-    private val movieViewModel: MovieViewModel by viewModels()
-
-    @OptIn(ExperimentalMaterial3Api::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        movieViewModel.getMovies()
-        enableEdgeToEdge()
-        setContent {
-            val moviesState by movieViewModel.moviesStateD.collectAsState()
-            MovieDBTheme {
-                Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = { Text(getString(R.string.app_name)) },
-                        )
-                    },
-                    modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    when(moviesState){
-                        is ViewState.Error -> {
-                            Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
-
-                        }
-                        ViewState.Loading -> {
-                            Toast.makeText(this, "loading", Toast.LENGTH_SHORT).show()
-                        }
-                        is ViewState.Success -> {
-                            Greeting(movieData = (moviesState as ViewState.Success<MoviesListModel>).data.results, paddingValues = innerPadding)
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+import com.example.moviedb.movie.data.movieEntity.MovieModel
 
 @Composable
-fun Greeting(movieData: List<MovieModel>, paddingValues: PaddingValues) {
-    MovieList(movieData,paddingValues)
-}
-
-@Composable
-fun MovieList(movieData: List<MovieModel>, paddingValues: PaddingValues) {
+fun MovieList(movieData: List<MovieModel>, paddingValues: PaddingValues,navController: NavController) {
     LazyVerticalGrid(
         modifier = Modifier.padding(paddingValues),
         columns = GridCells.Adaptive(minSize = gridCellSize)
     ) {
         itemsIndexed(movieData) { _, movie ->
-            MovieItem(movie = movie)
+            Surface(onClick = {
+                Log.i("TAG", "MovieList item click : ${movie.id}")
+                navController.currentBackStackEntry?.savedStateHandle?.set(
+                    key = "movie",
+                    value = movie
+                )
+                navController.navigate(Screen.MovieDetailsScreen.route +"/"+(movie.id.toString()))
+            }) {
+                MovieItem(movie = movie)
+            }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieItem(movie: MovieModel) {
     Column (
@@ -175,32 +119,7 @@ fun MovieItem(movie: MovieModel) {
         )
     }
 }
-@Composable
-fun MovieRating(progress: Float, modifier: Modifier) {
-    val progress: Float by remember { mutableFloatStateOf(progress) }
 
-    Card(
-        modifier = modifier
-    ) {
-        Box(contentAlignment = Alignment.Center) {
-            CircularProgressIndicator(
-                progress = progress/10,
-                trackColor = Color.Gray,
-            )
-            Text(
-
-                text = stringResource(
-                    id = R.string.movie_percentage_rate,
-                    (progress * 10).toInt()),
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = fontSize_12sp
-                ),
-                modifier = Modifier.align(Alignment.Center),
-            )
-        }
-    }
-}
 @Composable
 fun DetailsIcon(modifier: Modifier)
 {
