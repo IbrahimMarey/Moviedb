@@ -12,3 +12,5 @@ val Pink40 = Color(0xFF7D5260)
 
 //
 val blueDark = Color(0xFF022440)//#022440
+
+val banqueMisrColor = Color(0xFF862f3c)
