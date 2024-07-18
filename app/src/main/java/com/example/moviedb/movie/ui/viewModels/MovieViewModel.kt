@@ -12,15 +12,17 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(private val moviesUseCase: MoviesUseCase): ViewModel() {  /*private val movieRepoInterface: MovieRepoInterface,*/
-//    private var _moviesStateD : MutableStateFlow<ViewState<MoviesListModel>> = MutableStateFlow(
-//        ViewState.Loading)
-//    val moviesStateD :StateFlow<ViewState<MoviesListModel>> = _moviesStateD
-
     private var _moviesUIState : MutableStateFlow<MovieUIState> = MutableStateFlow(MovieUIState(true,listOf()
     ))
     val moviesUIState :StateFlow<MovieUIState> = _moviesUIState
@@ -32,26 +34,19 @@ class MovieViewModel @Inject constructor(private val moviesUseCase: MoviesUseCas
 
     fun getMovies()
     {
-        viewModelScope.launch(Dispatchers.IO){
-            moviesUseCase().collect{
-
-                _moviesUIState.value = MovieUIState(false,it.map { it.toUIModel() })
-
-//                _moviesStateD.value = ViewState.Success(it)
+        moviesUseCase()
+            .onStart {
+                _moviesUIState.update { it.copy(loading = true) }
             }
-        }
+            .onCompletion {
+                _moviesUIState.update { it.copy(loading = false) }
+            }
+            .catch { e ->
+                Log.e("TAG", "fetchMovies: ${e}")
+            }
+            .onEach { movies ->
+                _moviesUIState.update { it.copy(movieList = movies.map { it.toUIModel() }) }
+            }
+            .launchIn(viewModelScope)
     }
-
-    /*private var _moviesState : MutableStateFlow<ViewState<MoviesListModel>> = MutableStateFlow(
-        ViewState.Loading)
-    val moviesState :StateFlow<ViewState<MoviesListModel>> = _moviesState
-
-    fun getMovies()
-    {
-        viewModelScope.launch(Dispatchers.IO){
-            movieRepoInterface.getMovies().collect{
-                _moviesState.value = ViewState.Success(it)
-            }
-        }
-    }*/
 }
