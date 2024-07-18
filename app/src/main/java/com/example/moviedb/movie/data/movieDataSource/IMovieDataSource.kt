@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface IMovieDataSource
 {
-    fun getMovies(): Flow<MoviesListModel>
+    suspend fun getMovies(): MoviesListModel?
 }

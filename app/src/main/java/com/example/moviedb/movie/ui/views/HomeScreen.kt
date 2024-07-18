@@ -39,16 +39,16 @@ import com.example.moviedb.comman.ui.widgets.MovieRating
 import com.example.moviedb.comman.ui.navigation.Screen
 import com.example.moviedb.comman.utils.Constants
 import com.example.moviedb.movie.data.movieEntity.MovieModel
+import com.example.moviedb.movie.ui.models.MovieUIModel
 
 @Composable
-fun MovieList(movieData: List<MovieModel>, paddingValues: PaddingValues,navController: NavController) {
+fun MovieList(movieData: List<MovieUIModel>, paddingValues: PaddingValues,navController: NavController) {
     LazyVerticalGrid(
         modifier = Modifier.padding(paddingValues),
         columns = GridCells.Adaptive(minSize = gridCellSize)
     ) {
         itemsIndexed(movieData) { _, movie ->
             Surface(onClick = {
-                Log.i("TAG", "MovieList item click : ${movie.id}")
                 navController.currentBackStackEntry?.savedStateHandle?.set(
                     key = "movie",
                     value = movie
@@ -62,7 +62,7 @@ fun MovieList(movieData: List<MovieModel>, paddingValues: PaddingValues,navContr
 }
 
 @Composable
-fun MovieItem(movie: MovieModel) {
+fun MovieItem(movie: MovieUIModel) {
     Column (
         modifier = Modifier
             .padding(padding_16dp)

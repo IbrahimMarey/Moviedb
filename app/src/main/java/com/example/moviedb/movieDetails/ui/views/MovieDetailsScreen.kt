@@ -50,10 +50,11 @@ import com.example.moviedb.comman.theme.width_32dp
 import com.example.moviedb.comman.ui.widgets.MovieRating
 import com.example.moviedb.comman.utils.Constants
 import com.example.moviedb.movie.data.movieEntity.MovieModel
+import com.example.moviedb.movie.ui.models.MovieUIModel
 import com.example.moviedb.movieDetails.data.entity.MovieDetailsModel
 
 @Composable
-fun MovieDetailsScreen(movieDetailsModel: MovieDetailsModel,paddingValues: PaddingValues,movie:MovieModel?)
+fun MovieDetailsScreen(movieDetailsModel: MovieDetailsModel,paddingValues: PaddingValues,movie: MovieUIModel?)
 {
     Box {
         /*AsyncImage(
@@ -90,7 +91,7 @@ fun MovieDetailsScreen(movieDetailsModel: MovieDetailsModel,paddingValues: Paddi
             }
 
             item {
-                MovieDescription(movie?.overview?:"not found data")
+                MovieDescription(movieDetailsModel.overview)
             }
         }
     }

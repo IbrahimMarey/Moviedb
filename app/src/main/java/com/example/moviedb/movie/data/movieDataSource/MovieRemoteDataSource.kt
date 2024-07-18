@@ -8,9 +8,10 @@ import javax.inject.Inject
 
 class MovieRemoteDataSource @Inject constructor(private val movieServices: MovieServices) :
     IMovieDataSource {
-    override fun getMovies(): Flow<MoviesListModel> =flow{
-        movieServices.getMovies().body().let {
-            it?.let { it1 -> emit(it1) }
-        }
+    override suspend fun getMovies(): MoviesListModel? {
+        return movieServices.getMovies().body()
+//       return movieServices.getMovies().body().let {
+//            it?.let { it1 -> emit(it1) }
+//        }
     }
 }

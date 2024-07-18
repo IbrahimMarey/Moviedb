@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import com.example.moviedb.comman.utils.ViewState
 import com.example.moviedb.movie.domin.usesCases.MoviesUseCase
+import com.example.moviedb.movie.ui.models.toUIModel
+import com.example.moviedb.movie.ui.views.MovieUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,9 +17,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(private val moviesUseCase: MoviesUseCase): ViewModel() {  /*private val movieRepoInterface: MovieRepoInterface,*/
-    private var _moviesStateD : MutableStateFlow<ViewState<MoviesListModel>> = MutableStateFlow(
-        ViewState.Loading)
-    val moviesStateD :StateFlow<ViewState<MoviesListModel>> = _moviesStateD
+//    private var _moviesStateD : MutableStateFlow<ViewState<MoviesListModel>> = MutableStateFlow(
+//        ViewState.Loading)
+//    val moviesStateD :StateFlow<ViewState<MoviesListModel>> = _moviesStateD
+
+    private var _moviesUIState : MutableStateFlow<MovieUIState> = MutableStateFlow(MovieUIState(true,listOf()
+    ))
+    val moviesUIState :StateFlow<MovieUIState> = _moviesUIState
+
 
     init {
         getMovies()
@@ -25,10 +32,12 @@ class MovieViewModel @Inject constructor(private val moviesUseCase: MoviesUseCas
 
     fun getMovies()
     {
-        Log.i("TAG", "getMovies: ==============")
         viewModelScope.launch(Dispatchers.IO){
             moviesUseCase().collect{
-                _moviesStateD.value = ViewState.Success(it)
+
+                _moviesUIState.value = MovieUIState(false,it.map { it.toUIModel() })
+
+//                _moviesStateD.value = ViewState.Success(it)
             }
         }
     }
