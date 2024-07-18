@@ -53,6 +53,29 @@ android {
     }
 }
 
+val androidXVersion by extra("1.0.0")
+val androidXTestCoreVersion by extra("1.4.0")
+val androidXTestExtKotlinRunnerVersion by extra("1.1.3")
+val androidXTestRulesVersion by extra("1.2.0")
+val androidXAnnotations by extra("1.3.0")
+val appCompatVersion by extra("1.4.0")
+val archLifecycleVersion by extra("2.4.0")
+val archTestingVersion by extra("2.1.0")
+val coroutinesVersion by extra("1.5.2")
+val cardVersion by extra("1.0.0")
+val dexMakerVersion by extra("2.12.1")
+val espressoVersion by extra("3.4.0")
+val fragmentKtxVersion by extra("1.4.0")
+val hamcrestVersion by extra("1.3")
+val junitVersion by extra("4.13.2")
+val materialVersion by extra("1.4.0")
+val recyclerViewVersion by extra("1.2.1")
+val robolectricVersion by extra("4.5.1")
+val rulesVersion by extra("1.0.1")
+val swipeRefreshLayoutVersion by extra("1.1.0")
+val timberVersion by extra("4.7.1")
+val truthVersion by extra("1.1.2")
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -87,4 +110,55 @@ dependencies {
     // Compose Navigation
     implementation(libs.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+
+
+    //Unit Test
+
+    // Dependencies for local unit tests
+    testImplementation ("junit:junit:$junitVersion")
+    testImplementation ("org.hamcrest:hamcrest-all:$hamcrestVersion")
+    testImplementation ("androidx.arch.core:core-testing:$archTestingVersion")
+    testImplementation ("org.robolectric:robolectric:$robolectricVersion")
+
+    // AndroidX Test - JVM testing
+    testImplementation ("androidx.test:core-ktx:$androidXTestCoreVersion")
+    //testImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
+
+    // AndroidX Test - Instrumented testing
+    androidTestImplementation ("androidx.test.:$androidXTestExtKotlinRunnerVersion")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:$espressoVersion")
+
+    //Timber
+    implementation ("com.jakewharton.timber:timber:5.0.1")
+
+    // hamcrest
+    testImplementation ("org.hamcrest:hamcrest:2.2")
+    testImplementation ("org.hamcrest:hamcrest-library:2.2")
+    androidTestImplementation ("org.hamcrest:hamcrest:2.2")
+    androidTestImplementation ("org.hamcrest:hamcrest-library:2.2")
+
+
+    // AndroidX and Robolectric
+    testImplementation ("androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion")
+    testImplementation ("androidx.test:core-ktx:$androidXTestCoreVersion")
+    testImplementation ("org.robolectric:robolectric:4.8")
+
+    // InstantTaskExecutorRule
+    testImplementation ("androidx.arch.core:core-testing:2.1.0")
+    androidTestImplementation ("androidx.arch.core:core-testing:2.1.0")
+
+    //kotlinx-coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+
+
+    // Dependencies for Android instrumented unit tests
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+
+
+}
+
+kapt{
+    correctErrorTypes = true
 }
