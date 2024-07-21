@@ -9,12 +9,23 @@ import com.example.moviedb.movie.domin.fakes.FakeRepo
 import com.example.moviedb.movie.domin.iRepos.IMovieRepo
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.whenever
 
 @RunWith(AndroidJUnit4::class)
 class MoviesUseCaseTest {
 
+    @Mock
+    lateinit var repoMock:IMovieRepo
+
+    @Before
+    fun setUp(){
+        MockitoAnnotations.openMocks(this)
+    }
     @Test
     fun getMovieUseCase_getMovies()= runBlocking{
         // Given
@@ -54,9 +65,10 @@ class MoviesUseCaseTest {
         )
 
         val movieList = MoviesListModel(listOf(movie1, movie2))
-        val fakeRepo = FakeRepo(movieList)
 
-        val movieUseCase = MoviesUseCase(fakeRepo)
+        val movieUseCase = MoviesUseCase(repoMock)
+        whenever(repoMock.getMovies()).thenReturn(movieList)
+
 
         // That
         movieUseCase().collect{
@@ -73,9 +85,10 @@ class MoviesUseCaseTest {
 
 
         val movieList:MoviesListModel? = null
-        val fakeRepo = FakeRepo(movieList)
 
-        val movieUseCase = MoviesUseCase(fakeRepo)
+        val movieUseCase = MoviesUseCase(repoMock)
+        whenever(repoMock.getMovies()).thenReturn(movieList)
+
 
         // That
         movieUseCase().collect{
@@ -89,9 +102,10 @@ class MoviesUseCaseTest {
     fun getMovieUseCase_NoMovies()= runBlocking{
         // Given
         val movieList = MoviesListModel(listOf())
-        val fakeRepo = FakeRepo(movieList)
 
-        val movieUseCase = MoviesUseCase(fakeRepo)
+        val movieUseCase = MoviesUseCase(repoMock)
+        whenever(repoMock.getMovies()).thenReturn(movieList)
+
 
         // That
         movieUseCase().collect{

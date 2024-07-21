@@ -157,6 +157,13 @@ dependencies {
     androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
 
 
+    //Mockito
+    testImplementation ("org.mockito:mockito-core:3.+")
+    testImplementation ("org.mockito:mockito-inline:3.+")
+    testImplementation ("junit:junit:4.+")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
+
+
 }
 
 kapt{

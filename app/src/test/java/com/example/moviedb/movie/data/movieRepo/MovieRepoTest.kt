@@ -10,10 +10,19 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.whenever
 
 @RunWith(AndroidJUnit4::class)
 class MovieRepoTest{
+    @Mock
+    lateinit var movieDataSourceMock:IMovieDataSource
 
+    @Before
+    fun setUp(){
+        MockitoAnnotations.openMocks(this)
+    }
     @Test
     fun testGetMovies_getAllMovies()= runBlocking{
         // Given
@@ -53,10 +62,9 @@ class MovieRepoTest{
         )
 
         val movieList = MoviesListModel(listOf(movie1, movie2))
-        val dataSource = FakeMovieDataSource(movieList)
 
-        val repo = MovieRepo(dataSource)
-
+        val repo = MovieRepo(movieDataSourceMock)
+        whenever(movieDataSourceMock.getMovies()).thenReturn(movieList)
         // That
         val result = repo.getMovies()
 
@@ -69,8 +77,8 @@ class MovieRepoTest{
     fun testGetMovies_nullMovies()= runBlocking{
         // Given
         val movieList = null
-        val dataSource = FakeMovieDataSource(movieList)
-        val repo = MovieRepo(dataSource)
+        val repo = MovieRepo(movieDataSourceMock)
+        whenever(movieDataSourceMock.getMovies()).thenReturn(movieList)
 
         // That
         val result = repo.getMovies()
@@ -83,8 +91,8 @@ class MovieRepoTest{
     fun testGetMovies_NoMovies()= runBlocking{
         // Given
         val movieList = MoviesListModel(listOf())
-        val dataSource = FakeMovieDataSource(movieList)
-        val repo = MovieRepo(dataSource)
+        val repo = MovieRepo(movieDataSourceMock)
+        whenever(movieDataSourceMock.getMovies()).thenReturn(movieList)
 
         // That
         val result = repo.getMovies()
