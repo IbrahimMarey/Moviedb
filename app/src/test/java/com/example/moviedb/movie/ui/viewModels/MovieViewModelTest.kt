@@ -7,18 +7,30 @@ import com.example.moviedb.movie.data.movieEntity.MovieModel
 import com.example.moviedb.movie.data.movieEntity.MoviesListModel
 import com.example.moviedb.movie.data.movieRepo.MovieRepo
 import com.example.moviedb.movie.domin.entities.toDomainModel
+import com.example.moviedb.movie.domin.iRepos.IMovieRepo
 import com.example.moviedb.movie.domin.usesCases.MoviesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.whenever
 
 @RunWith(AndroidJUnit4::class)
 @ExperimentalCoroutinesApi
 class MovieViewModelTest{
 
+    @Mock
+    lateinit var repoMock: IMovieRepo
+
+    @Before
+    fun setUp(){
+        MockitoAnnotations.openMocks(this)
+    }
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
@@ -61,10 +73,9 @@ class MovieViewModelTest{
         )
 
         val movieList = MoviesListModel(listOf(movie1, movie2))
-        val dataSource = FakeMovieDataSource(movieList)
+        whenever(repoMock.getMovies()).thenReturn(movieList)
 
-        val repo = MovieRepo(dataSource)
-        val useCase = MoviesUseCase(repo)
+        val useCase = MoviesUseCase(repoMock)
         val vm = MovieViewModel(useCase)
 
         // That
